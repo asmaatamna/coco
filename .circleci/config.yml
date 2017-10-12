@@ -23,7 +23,7 @@ references:
       name: Run the random search example on Ubuntu.
       command: |
         # install dependencies
-        sudo apt-get install -y build-essential
+        sudo apt-get install -y build-essential aptitude
         aptitude search '~i!~M'
         # install coco
         python do.py run-python
