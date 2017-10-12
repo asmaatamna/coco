@@ -537,7 +537,6 @@ def plotUnifLogXMarkers(x, y, nbperdecade, logscale=False, **kwargs):
         res.extend(res2)
 
     if 'label' in kwargs:
-        print(kwargs)
         res3 = plt.plot([], [], **kwargs)
         for i in res3:
             i.update_from(res[0])  # copy all attributes of res
