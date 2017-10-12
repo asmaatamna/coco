@@ -31,6 +31,7 @@ references:
         cd code-experiments/build/python
         sudo python example_experiment.py bbob
         # postprocess the results
+        pip show matplotlib
         sudo python -m cocopp -o ./postproc ./exdata
 
   test_ubuntu_python2: &test_ubuntu_python2
