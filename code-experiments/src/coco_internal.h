@@ -221,6 +221,8 @@ struct coco_suite_s {
 
 };
 
+void bbob_problem_best_parameter_print(const coco_problem_t *problem);
+
 #ifdef __cplusplus
 }
 #endif
