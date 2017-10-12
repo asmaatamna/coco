@@ -55,7 +55,7 @@ references:
       name: Run all coco tests except for Python on Ubuntu.
       command: |
         # install extra dependencies for tests
-        sudo apt-get install -y liboctave-dev openjdk-8-jdk \
+        sudo apt-get install -y liboctave-dev openjdk-7-jdk \
                                 libcmocka-dev mlocate texlive-full
         updatedb
         # test coco
