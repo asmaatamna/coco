@@ -8,7 +8,7 @@ references:
       command: |
         sudo apt-get update -qy
         sudo apt-get install -y python-dev
-        sudo pip install --upgrade numpy matplotlib six setuptools scipy pytest
+        sudo pip install --upgrade matplotlib=2.0.2 numpy six setuptools scipy pytest
 
   install_ubuntu_python3: &install_ubuntu_python3
     run:
@@ -16,7 +16,7 @@ references:
       command: |
         sudo apt-get update -qy
         sudo apt-get install -y python3-dev
-        sudo pip3 install --upgrade numpy matplotlib six setuptools scipy pytest
+        sudo pip3 install --upgrade matplotlib=2.0.2 numpy six setuptools scipy pytest
 
   test_ubuntu_example: &test_ubuntu_example
     run:
