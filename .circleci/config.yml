@@ -29,23 +29,23 @@ references:
         sudo python do.py install-postprocessing
         # run the example
         cd code-experiments/build/python
-        python example_experiment.py bbob
+        sudo python example_experiment.py bbob
         # postprocess the results
-        python -m cocopp -o ./postproc ./exdata/*
+        sudo python -m cocopp -o ./postproc ./exdata/*
 
   test_ubuntu_python2: &test_ubuntu_python2
     run:
       name: Run Python 2 coco tests on Ubuntu.
       command: |
         sudo apt-get install -y git cython
-        python do.py test-python
+        sudo python do.py test-python
 
   test_ubuntu_python3: &test_ubuntu_python3
     run:
       name: Run Python 3 coco tests on Ubuntu.
       command: |
         sudo apt-get install -y git cython3
-        python do.py test-python
+        sudo python do.py test-python
 
   test_ubuntu_other: &test_ubuntu_other
     run:
