@@ -31,7 +31,6 @@ references:
         cd code-experiments/build/python
         sudo python example_experiment.py bbob
         # postprocess the results
-        pip show matplotlib
         sudo python -m cocopp -o ./postproc ./exdata
 
   test_ubuntu_python2: &test_ubuntu_python2
@@ -57,13 +56,13 @@ references:
         # install extra dependencies for tests
         sudo apt-get install -y liboctave-dev openjdk-7-jdk \
                                 libcmocka-dev mlocate texlive-full
-        updatedb
+        sudo updatedb
         # test coco
-        python do.py test-c
-        python do.py test-octave
-        python do.py test-java
-        python do.py test-preprocessing
-        python do.py test-postprocessing-all
+        sudo python do.py test-c
+        sudo python do.py test-octave
+        sudo python do.py test-java
+        sudo python do.py test-preprocessing
+        sudo python do.py test-postprocessing-all
       no_output_timeout: 7200
 
 jobs:
