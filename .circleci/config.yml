@@ -8,7 +8,7 @@ references:
       command: |
         sudo apt-get update -qy
         sudo apt-get install -y python-dev
-        pip install numpy matplotlib six setuptools scipy pytest
+        sudo pip install numpy matplotlib six setuptools scipy pytest
 
   install_ubuntu_python3: &install_ubuntu_python3
     run:
@@ -16,7 +16,7 @@ references:
       command: |
         sudo apt-get update -qy
         sudo apt-get install -y python3-dev
-        pip3 install numpy matplotlib six setuptools scipy pytest
+        sudo pip3 install numpy matplotlib six setuptools scipy pytest
 
   test_ubuntu_example: &test_ubuntu_example
     run:
@@ -25,27 +25,27 @@ references:
         # install dependencies
         sudo apt-get install -y build-essential
         # install coco
-        python do.py run-python
-        python do.py install-postprocessing install-user
+        sudo python do.py run-python
+        sudo python do.py install-postprocessing
         # run the example
         cd code-experiments/build/python
-        python example_experiment.py bbob
+        sudo python example_experiment.py bbob
         # postprocess the results
-        python -m cocopp -o ./postproc ./exdata
+        sudo python -m cocopp -o ./postproc ./exdata
 
   test_ubuntu_python2: &test_ubuntu_python2
     run:
       name: Run Python 2 coco tests on Ubuntu.
       command: |
         sudo apt-get install -y git cython
-        python do.py test-python
+        sudo python do.py test-python
 
   test_ubuntu_python3: &test_ubuntu_python3
     run:
       name: Run Python 3 coco tests on Ubuntu.
       command: |
         sudo apt-get install -y git cython3
-        python do.py test-python
+        sudo python do.py test-python
 
   test_ubuntu_other: &test_ubuntu_other
     run:
