@@ -31,7 +31,7 @@ references:
         cd code-experiments/build/python
         sudo python example_experiment.py bbob
         # postprocess the results
-        sudo python -m cocopp -o ./postproc ./exdata/*
+        sudo python -m cocopp -o ./postproc ./exdata
 
   test_ubuntu_python2: &test_ubuntu_python2
     run:
