@@ -751,7 +751,7 @@ for ee.suite_name, ee.observer_options['result_folder'] in [
         print("is not known")
                 '''], verbose=_verbosity)
             # now run all tests
-            python('code-postprocessing/cocopp', ['test.py', 'all'], verbose=_verbosity)
+            python('code-postprocessing/cocopp', ['test.py', 'all', 'python3'], verbose=_verbosity)
         else:
             python('code-postprocessing/cocopp', ['test.py'], verbose=_verbosity)
         
