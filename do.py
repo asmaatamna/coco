@@ -122,8 +122,10 @@ def build_c_unit_tests():
     """ Builds unit tests in C """
     library_path = ''
     file_name = ''
+    print("**  **  **  **  **  sys.platform = ", sys.platform)
     if 'win32' in sys.platform:
         file_name = 'cmocka.dll'
+        print("**  **  **  **  **  platform.machine() = ", platform.machine())
         if '64' in platform.machine():
             library_path = 'code-experiments/test/unit-test/lib/win64'
         elif ('32' in platform.machine()) or ('x86' in platform.machine()):
@@ -133,6 +135,7 @@ def build_c_unit_tests():
                 library_path = 'code-experiments/test/unit-test/lib/win32_mingw'
     elif 'linux' in sys.platform:
         file_name = 'libcmocka.so'
+        print("**  **  **  **  **  platform.linux_distribution() = ", platform.linux_distribution())
         if 'Ubuntu' in platform.linux_distribution():
             library_path = 'code-experiments/test/unit-test/lib/linux_ubuntu'
         elif 'Fedora' in platform.linux_distribution():
