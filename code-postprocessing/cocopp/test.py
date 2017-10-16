@@ -198,9 +198,9 @@ def main(arguments):
 
     """
 
-    run_all_tests = len(arguments) == 1 and arguments[0] == 'all'
+    run_all_tests = 'all' in arguments
 
-    python = 'python -m '  # how to call python
+    python = 'python -m ' if 'python3' not in arguments else 'python3 -m ' # how to call python
     if len(sys.argv) > 1 and sys.argv[1] == 'wine':
         python = 'C:\\Python26\\python.exe '  # works for wine
 
