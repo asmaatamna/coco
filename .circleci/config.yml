@@ -19,9 +19,9 @@ references:
         pip3 install --upgrade matplotlib==2.0.2 numpy six setuptools scipy pytest
         ln -s /usr/bin/python3 /usr/bin/python  # this is dirty
 
-  test_ubuntu_example: &test_ubuntu_example
+  test_ubuntu_example_python2: &test_ubuntu_example_python2
     run:
-      name: Run the random search example on Ubuntu.
+      name: Run the random search example on Ubuntu with Python 2.
       command: |
         # install dependencies
         apt-get install -y build-essential
@@ -33,6 +33,21 @@ references:
         python example_experiment.py bbob
         # postprocess the results
         python -m cocopp -o ./postproc ./exdata
+
+  test_ubuntu_example_python3: &test_ubuntu_example_python3
+    run:
+      name: Run the random search example on Ubuntu with Python 3.
+      command: |
+        # install dependencies
+        apt-get install -y build-essential
+        # install coco
+        python3 do.py run-python
+        python3 do.py install-postprocessing
+        # run the example
+        cd code-experiments/build/python
+        python3 example_experiment.py bbob
+        # postprocess the results
+        python3 -m cocopp -o ./postproc ./exdata
 
   test_ubuntu_python2: &test_ubuntu_python2
     run:
@@ -47,23 +62,39 @@ references:
       name: Run Python 3 coco tests on Ubuntu.
       command: |
         apt-get install -y git
-        pip install --upgrade cython
-        python do.py test-python
+        pip3 install --upgrade cython
+        python3 do.py test-python
 
-  test_ubuntu_other: &test_ubuntu_other
+  test_ubuntu_other_python2: &test_ubuntu_other_python2
     run:
-      name: Run all coco tests except for Python on Ubuntu.
+      name: Run all coco tests except for Python on Ubuntu with Python 2.
       command: |
         # install extra dependencies for tests
-        apt-get install -y liboctave-dev openjdk-7-jdk \
+        apt-get install -y liboctave-dev openjdk-8-jdk \
                                 libcmocka-dev mlocate texlive-full
-        sudo updatedb
+        updatedb
         # test coco
         python do.py test-c
         python do.py test-octave
         python do.py test-java
         python do.py test-preprocessing
         python do.py test-postprocessing-all
+      no_output_timeout: 7200
+
+  test_ubuntu_other_python3: &test_ubuntu_other_python3
+    run:
+      name: Run all coco tests except for Python on Ubuntu with Python 3.
+      command: |
+        # install extra dependencies for tests
+        apt-get install -y liboctave-dev openjdk-8-jdk \
+                                libcmocka-dev mlocate texlive-full
+        updatedb
+        # test coco
+        python3 do.py test-c
+        python3 do.py test-octave
+        python3 do.py test-java
+        python3 do.py test-preprocessing
+        python3 do.py test-postprocessing-all
       no_output_timeout: 7200
 
 jobs:
@@ -77,9 +108,9 @@ jobs:
     steps:
       - checkout
       - *install_ubuntu_python3
-      - *test_ubuntu_example
+      - *test_ubuntu_example_python3
       - *test_ubuntu_python3
-      - *test_ubuntu_other
+      - *test_ubuntu_other_python3
 
   test_ubuntu_latest_python2:
     docker:
@@ -90,9 +121,9 @@ jobs:
     steps:
       - checkout
       - *install_ubuntu_python2
-      - *test_ubuntu_example
+      - *test_ubuntu_example_python2
       - *test_ubuntu_python2
-      - *test_ubuntu_other
+      - *test_ubuntu_other_python2
 
 workflows:
 
