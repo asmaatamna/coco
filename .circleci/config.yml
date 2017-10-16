@@ -70,7 +70,7 @@ jobs:
 
   test_ubuntu_rolling_python3:
     docker:
-      - image: circleci/python:3.6
+      - image: ubuntu:rolling
         environment:
           CC: gcc
     working_directory: ~/coco
@@ -83,7 +83,7 @@ jobs:
 
   test_ubuntu_latest_python2:
     docker:
-      - image: circleci/python:2.7
+      - image: ubuntu:latest
         environment:
           CC: gcc
     working_directory: ~/coco
