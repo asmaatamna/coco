@@ -17,6 +17,7 @@ references:
         apt-get update -qy
         apt-get install -y python3-dev python3-pip
         pip3 install --upgrade matplotlib==2.0.2 numpy six setuptools scipy pytest
+        ln -s /usr/bin/python3 /usr/bin/python  # this is dirty
 
   test_ubuntu_example: &test_ubuntu_example
     run:
