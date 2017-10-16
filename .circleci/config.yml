@@ -58,6 +58,7 @@ references:
                                 libcmocka-dev mlocate texlive-full
         sudo updatedb
         # test coco
+        objdump -TC ~/coco/code-experiments/test/unit-test/libcmocka.so
         sudo python do.py test-c
         sudo python do.py test-octave
         sudo python do.py test-java
