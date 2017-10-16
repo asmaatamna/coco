@@ -6,64 +6,63 @@ references:
     run:
       name: Install Python 2 on Ubuntu.
       command: |
-        sudo apt-get update -qy
-        sudo apt-get install -y python-dev
-        sudo pip install --upgrade matplotlib==2.0.2 numpy six setuptools scipy pytest
+        apt-get update -qy
+        apt-get install -y python-dev
+        pip install --upgrade matplotlib==2.0.2 numpy six setuptools scipy pytest
 
   install_ubuntu_python3: &install_ubuntu_python3
     run:
       name: Install Python 3 on Ubuntu and set it to be the default.
       command: |
-        sudo apt-get update -qy
-        sudo apt-get install -y python3-dev
-        sudo pip3 install --upgrade matplotlib==2.0.2 numpy six setuptools scipy pytest
+        apt-get update -qy
+        apt-get install -y python3-dev
+        pip3 install --upgrade matplotlib==2.0.2 numpy six setuptools scipy pytest
 
   test_ubuntu_example: &test_ubuntu_example
     run:
       name: Run the random search example on Ubuntu.
       command: |
         # install dependencies
-        sudo apt-get install -y build-essential
+        apt-get install -y build-essential
         # install coco
-        sudo python do.py run-python
-        sudo python do.py install-postprocessing
+        python do.py run-python
+        python do.py install-postprocessing
         # run the example
         cd code-experiments/build/python
-        sudo python example_experiment.py bbob
+        python example_experiment.py bbob
         # postprocess the results
-        sudo python -m cocopp -o ./postproc ./exdata
+        python -m cocopp -o ./postproc ./exdata
 
   test_ubuntu_python2: &test_ubuntu_python2
     run:
       name: Run Python 2 coco tests on Ubuntu.
       command: |
-        sudo apt-get install -y git
-        sudo pip install --upgrade cython
-        sudo python do.py test-python
+        apt-get install -y git
+        pip install --upgrade cython
+        python do.py test-python
 
   test_ubuntu_python3: &test_ubuntu_python3
     run:
       name: Run Python 3 coco tests on Ubuntu.
       command: |
-        sudo apt-get install -y git
-        sudo pip install --upgrade cython
-        sudo python do.py test-python
+        apt-get install -y git
+        pip install --upgrade cython
+        python do.py test-python
 
   test_ubuntu_other: &test_ubuntu_other
     run:
       name: Run all coco tests except for Python on Ubuntu.
       command: |
         # install extra dependencies for tests
-        sudo apt-get install -y liboctave-dev openjdk-7-jdk \
+        apt-get install -y liboctave-dev openjdk-7-jdk \
                                 libcmocka-dev mlocate texlive-full
         sudo updatedb
         # test coco
-        objdump -TC ~/coco/code-experiments/test/unit-test/lib/linux_ubuntu/libcmocka.so
-        sudo python do.py test-c
-        sudo python do.py test-octave
-        sudo python do.py test-java
-        sudo python do.py test-preprocessing
-        sudo python do.py test-postprocessing-all
+        python do.py test-c
+        python do.py test-octave
+        python do.py test-java
+        python do.py test-preprocessing
+        python do.py test-postprocessing-all
       no_output_timeout: 7200
 
 jobs:
